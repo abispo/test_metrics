@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from metrics.models import Video, Comment, Thumb, Theme
+
+admin.site.register(Video)
+admin.site.register(Comment)
+admin.site.register(Thumb)
+admin.site.register(Theme)
