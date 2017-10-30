@@ -1,8 +1,7 @@
 
 <h1>Video: {{ video.title }}</h1>
 
-<p><strong>Date uploaded:</strong> {{ video.date_uploaded }}</p>
+<p><strong>Date uploaded:</strong> {{ video.date_uploaded|date:"Y-m-d H:i" }}</p>
 <p><strong>Views:</strong> {{ video.views }}</p> 
 <p><strong>Themes:</strong> {% for theme in video.theme.all %} {{ theme }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>  
-
 
