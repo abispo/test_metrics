@@ -25,6 +25,12 @@ def index(request):
         context = {}
     )
 
+def safe_div(x, y):
+    try:
+        return x / y
+    except ZeroDivisionError:
+        return 0
+
 def get_popular_themes(request):
     theme_list = []
 
@@ -45,9 +51,9 @@ def get_popular_themes(request):
             total_thumbs, thumbs_up = get_thumbs_statistics(video)
             thumbs_down = total_thumbs - thumbs_up
 
-            positivity_factor = 0.7 * positive_comments + 0.3 * thumbs_up
-            good_comments = positive_comments / (positive_comments / negative_comments) if negative_comments != 0 else 0
-            thumbs_up = thumbs_up / (thumbs_up / thumbs_down) if thumbs_down != 0 else 0
+            good_comments = 0 if safe_div(positive_comments, negative_comments) == 0 else positive_comments / safe_div(positive_comments, negative_comments)
+            positivity_factor = 0.7 * good_comments + 0.3 * thumbs_up
+            thumbs_up = 0 if safe_div(thumbs_up, thumbs_down) == 0 else thumbs_up / safe_div(thumbs_up, thumbs_down)
 
             score += video.views * time_factor * positivity_factor
 
