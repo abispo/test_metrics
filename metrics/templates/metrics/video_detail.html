@@ -3,5 +3,5 @@
 
 <p><strong>Date uploaded:</strong> {{ video.date_uploaded|date:"Y-m-d H:i" }}</p>
 <p><strong>Views:</strong> {{ video.views }}</p> 
-<p><strong>Themes:</strong> {% for theme in video.theme.all %} {{ theme }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>  
+<p><strong>Themes:</strong> {% for theme in video.theme.all %} <a href="{{ theme.get_absolute_url }}">{{ theme }}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>  
 

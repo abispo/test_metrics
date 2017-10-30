@@ -1,10 +1,10 @@
-<h1>Popular themes</h1>
+<h1>Theme List</h1>
 
 {% if theme_list %}
 <ul>
     {% for theme in theme_list %}
     <li>
-        <a href="{{ theme.get_absolute_url }}">{{ theme.name }}</a> Score - {{ theme.score }}
+    <a href="{{ theme.get_absolute_url }}">{{ theme.id}} - {{ theme.name }}</a> {{theme.total_comments}}
     </li>
     {% endfor %}
 </ul>
