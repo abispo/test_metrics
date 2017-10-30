@@ -1,10 +1,14 @@
 from django.db import models
+from django.urls import reverse
 
 class Video(models.Model):
     title = models.CharField(max_length=100, blank=False, default='Youtube Video')
     date_uploaded = models.DateTimeField()
     views = models.BigIntegerField()
     theme = models.ManyToManyField('Theme', related_name='themes')
+
+    def get_absolute_url(self):
+        return reverse('video-detail', args=[str(self.id)])
 
     def __str__(self):
         return self.title
